@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="ko">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>A Visual Git Reference</title>
@@ -12,10 +12,18 @@
   <div id="language-box">
     <a>다른 언어로 보기</a>
     <ul>
+      <li><a href='index-de.html'>Deutsch</a></li>
       <li><a href='index-en.html'>English</a></li>
+      <li><a href='index-es.html'>Español</a></li>
+      <li><a href='index-fr.html'>Français</a></li>
+      <li><a href='index-it.html'>Italiano</a></li>
       <li><a href='index-ja.html'>日本語</a></li>
       <li class="selected">한국어</li>
+      <li><a href='index-pt.html'>Português</a></li>
       <li><a href='index-ru.html'>Русский</a></li>
+      <li><a href='index-sk.html'>Slovenčina</a></li>
+      <li><a href='index-vi.html'>Tiếng Việt</a></li>
+      <li><a href='index-zh-cn.html'>简体中文</a></li>
     </ul>
   </div>
 
@@ -165,7 +173,7 @@
   복사하는 명령입니다. 또는 브랜치를 변경할 때 사용하기도 합니다.</p>
 
   <p>Checkout 명령에 파일 이름이 주어지면 (또는 <code>-p</code> 옵션) Git은
-  해당 파일을 마지막 커밋에서 Stage 영역과 작업 디렉토리로 복사합니다.
+  해당 파일을 주어진 커밋에서 Stage 영역과 작업 디렉토리로 복사합니다.
   예를 들어 <code>git checkout HEAD~ foo.c</code> 명령을 실행하면
   <em>HEAD~</em> 커밋(현재 커밋보다 한 단계 앞의 커밋)으로부터 
   <code>foo.c</code> 파일을 작업 디렉토리에 복사하고 Stage 영역에도 추가합니다.
@@ -176,7 +184,7 @@
 
   <p>파일 이름을 지정하지 않고 브랜치 이름만 지정하면 Git은 <em>HEAD</em>를
   지정한 브랜치를 가리키도록 변경합니다. 이것은 결과적으로 브랜치를 변경한
-  것과 같습니다. 따라서 자동으로 현재 디렉토리의 내용은 해당 브랜치의 내용으로
+  것과 같습니다. 따라서 자동으로 Stage 영역과 작업 디렉토리의 내용은 해당 브랜치의 내용으로
   변경됩니다. <em>a47c3</em> 커밋에 포함된 파일들을 현재 디렉토리로 복사할 것이며
   이전 <em>ed489</em> 커밋에는 포함되었지만 <em>a47c3</em> 커밋에 포함되어있지
   않은 파일들은 삭제될 것입니다. 두 커밋에 모두에 포함되지 않은 파일은 무시될
@@ -184,9 +192,9 @@
 
   <div class="center"><img src='checkout-branch.svg.png'></div>
 
-  <p>파일 이름을 지정하지 않고 브랜치 이름만 지정한 경우, 그리고 브랜치 이름이
-  로컬에 존재하지 않는 브랜치 이거나 태그, SHA-1 해시 모양의 커밋, 또는
-  <em>master~3</em> 과 같은 인자로 지정했다면, <em>detached HEAD</em>라고 부르는
+  <p> 파일 이름을 지정하지 않고, (로컬) 브랜치 이름도 지정하지 않은 경우 - 즉, 태그, 
+  리모트 브랜치, SHA-1 아이디, 혹은 <em>master~3</em>와 같은 유형을 인자로 지정했다면,
+  <em>detached HEAD</em>라고 부르는
   익명 브랜치(Anonymous Branch)를 사용하게 되는데 프로젝트의 히스토리를
   옮겨다닐 때 유용하게 사용할 수 있습니다. 'Git 프로젝트'의 1.6.6.1 버전을 컴파일
   해보고 싶다면 <code>git checkout v1.6.6.1</code> 명령으로 소스를 Checkout하여
@@ -263,7 +271,7 @@
   뿌리가 되는 커밋(<em>b325c</em>)을 가지고
   <a href='http://en.wikipedia.org/wiki/Three-way_merge'>3-way Merge</a>를
   수행합니다. Merge한 결과는 작업 디렉토리와 Stage 영역에 저장되며 부모가
-  여럿인 새 커밋(<em>33104</em>) 만듭니다.
+  여럿(<em>33104</em>, <em>ed489</em>)인 새 커밋을 만듭니다.
   </p>
 
   <div class="center"><img src='merge.svg.png'></div>
@@ -325,15 +333,20 @@
   버려지는 커밋 처럼 버려지게 됩니다.</p>
 
   <hr>
-  <p>Copyright &copy; 2010, <a href='mailto:lodatom@gmail.com'>Mark
-    Lodato</a>.  日本語 번역 &copy; 2010,
-  <a href='http://github.com/kazu-yamamoto'>Kazu Yamamoto</a>.
-  한국어 번역 &copy; 2011, <a href='mailto:sean@weaveus.com'>Sean
-    Lee</a>.
-  본 저작물은 <a rel="license"
-    href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative
-    Commons Attribution-Noncommercial-Share Alike 3.0 United States
-    License</a> 라이센스를 따릅니다.</p>
+
+  <p>Copyright &copy; 2010,
+    <a href='mailto:lodatom@gmail.com'>Mark Lodato</a>.
+  한국어 번역 &copy; 2011,
+    <a href='mailto:sean@weaveus.com'>Sean Lee</a>.
+  </p>
+
+  <p><a rel="license"
+    href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/deed.ko"><img
+    alt="" src="http://i.creativecommons.org/l/by-nc-sa/3.0/us/80x15.png"></a>
+  이 저작물은 <a rel="license"
+    href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/deed.ko">크리에이티브
+    커먼즈 저작자표시-비영리-동일조건변경허락 3.0 미국 라이선스</a>에 따라
+  이용할 수 있습니다.</p>
 
 </body>
 </html>

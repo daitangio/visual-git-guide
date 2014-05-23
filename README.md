@@ -28,12 +28,35 @@ SVGs and PNGs using
 [pdf2svg](http://www.cityinthesky.co.uk/pdf2svg.html) and
 [convert](http://www.imagemagick.org/script/convert.php), respectively.
 
+### Building from Source###
+
+First, the following must be installed:
+
+    sudo apt-get install texlive texlive-fonts-extra pdf2svg imagemagick
+
+Then, build the images:
+
+    make
+
+Finally, create the gh-pages branch:
+
+    make gh-pages
+
 License
 -------
 
 Copyright &copy; 2010, [Mark Lodato](mailto:lodatom@gmail.com).  Japanese
 translation &copy; 2010, [Kazu Yamamoto](http://github.com/kazu-yamamoto).
+Korean translation &copy; 2011, [Sean](mailto:sean@weaveus.com).
 Russian translation &copy; 2012, [Alex Sychev](mailto:alex@sychev.com).
+French translation &copy; 2012, [Michel Lefranc](mailto:michel.lefranc@gmail.com).
+Chinese translation &copy; 2012, [wych](mailto:ellrywych@gmail.com).
+Spanish translation &copy; 2012, [Lucas Videla](http://www.delucas.com.ar).
+Italian translation &copy; 2012, [Daniel Londero](mailto:daniel.londero@gmail.com).
+German translation &copy; 2013, [Martin Funk](mailto:mafulafunk@gmail.com).
+Vietnamese translation &copy; 2013, [Hoat Le](https://github.com/hoatle).
+Slovak translation &copy; 2013 [Ľudovít Lučenič](https://github.com/llucenic).
+Portuguese translation &copy; 2014 [Gustavo de Oliveira](mailto:goliveira5d@gmail.com)
 This work is licensed under a
 [Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States
 License](http://creativecommons.org/licenses/by-nc-sa/3.0/us/).

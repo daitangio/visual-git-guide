@@ -1,3 +1,7 @@
+# Instructions for pushing:
+#     make gh-pages
+#     git push
+
 PDFLATEX = pdflatex -halt-on-error -file-line-error
 PDF2SVG = pdf2svg
 PDF2PNG = convert -density 88
@@ -26,10 +30,19 @@ FILES := \
     reset-files
 
 HTML := \
+    index-de.html \
     index-en.html \
+    index-es.html \
+    index-fr.html \
+    index-it.html \
     index-ja.html \
     index-ko.html \
-    index-ru.html
+    index-pt.html \
+    index-ru.html \
+    index-sk.html \
+    index-vi.html \
+    index-zh-cn.html \
+    translate-en.html
 
 PDF_OUT = $(FILES:=.pdf)
 PNG_OUT = $(PDF_OUT:.pdf=.svg.png)
