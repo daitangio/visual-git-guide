@@ -37,11 +37,13 @@ HTML := \
     index-it.html \
     index-ja.html \
     index-ko.html \
+    index-pl.html \
     index-pt.html \
     index-ru.html \
     index-sk.html \
     index-vi.html \
     index-zh-cn.html \
+    index-zh-tw.html \
     translate-en.html
 
 PDF_OUT = $(FILES:=.pdf)

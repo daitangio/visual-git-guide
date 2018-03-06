@@ -19,11 +19,13 @@
       <li><a href='index-it.html'>Italiano</a></li>
       <li><a href='index-ja.html'>日本語</a></li>
       <li><a href='index-ko.html'>한국어</a></li>
+      <li><a href='index-pl.html'>Polski</a></li>
       <li><a href='index-pt.html'>Português</a></li>
       <li><a href='index-ru.html'>Русский</a></li>
       <li><a href='index-sk.html'>Slovenčina</a></li>
       <li><a href='index-vi.html'>Tiếng Việt</a></li>
       <li><a href='index-zh-cn.html'>简体中文</a></li>
+      <li><a href='index-zh-tw.html'>正體中文</a></li>
     </ul>
   </div>
 
@@ -38,6 +40,10 @@
   your understanding.  If you're interested in how this site was created, see
   my <a href='http://github.com/MarkLodato/visual-git-guide'>GitHub
     repository</a>.</p>
+
+  <p id="link-to-d3">Also recommended: <a
+      href="http://onlywei.github.io/explain-git-with-d3/#">Visualizing Git
+      Concepts with D3</a></p>
 
   <h2 id="contents">Contents</h2>
   <ol>
@@ -56,6 +62,8 @@
       </ol>
     </li>
     <li><a href="#technical-notes">Technical Notes</a></li>
+    <li><a href="#appendix-stage">Walkthrough: Watching the effect of
+        commands</a></li>
   </ol>
 
   <h2 id="basic-usage">Basic Usage</h2>
@@ -330,6 +338,137 @@
   to commits discarded with <code>git commit --amend</code> or <code>git
     rebase</code>.</p>
 
+  <h2 id="appendix-stage">Walkthrough: Watching the effect of commands</h2>
+
+  <p>The following walks you through changes to a repository so you can see the
+    effect of the command in real time, similar to how <a
+      href="http://onlywei.github.io/explain-git-with-d3/#">Visualizing Git
+      Concepts with D3</a> simulates them visually. Hopefully you find this
+    useful.</p>
+
+  <p>Start by creating some repository:</p>
+
+  <pre><code>$ <strong>git init foo</strong>
+$ <strong>cd foo</strong>
+$ <strong>echo 1 &gt; myfile</strong>
+$ <strong>git add myfile</strong>
+$ <strong>git commit -m "version 1"</strong>
+</code></pre>
+
+  <p>Now, define the following functions to help us show information:</p>
+
+  <pre><code>show_status() {
+  echo "HEAD:     $(git cat-file -p HEAD:myfile)"
+  echo "Stage:    $(git cat-file -p :myfile)"
+  echo "Worktree: $(cat myfile)"
+}
+
+initial_setup() {
+  echo 3 &gt; myfile
+  git add myfile
+  echo 4 &gt; myfile
+  show_status
+}
+</code></pre>
+
+  <p>Initially, everything is at version 1.</p>
+
+  <pre><code>$ <strong>show_status</strong>
+HEAD:     1
+Stage:    1
+Worktree: 1
+</code></pre>
+
+  <p>We can watch the state change as we add and commit.</p>
+
+  <pre><code>$ <strong>echo 2 &gt; myfile</strong>
+$ <strong>show_status</strong>
+HEAD:     1
+Stage:    1
+Worktree: 2
+$ <strong>git add myfile</strong>
+$ <strong>show_status</strong>
+HEAD:     1
+Stage:    2
+Worktree: 2
+$ <strong>git commit -m "version 2"</strong>
+[master 4156116] version 2
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ <strong>show_status</strong>
+HEAD:     2
+Stage:    2
+Worktree: 2
+</code></pre>
+
+  <p>Now, let's create an initial state where the three are all different.</p>
+
+  <pre><code>$ <strong>initial_setup</strong>
+HEAD:     2
+Stage:    3
+Worktree: 4
+</code></pre>
+
+  <p>Let's watch what each command does.  You will see that they match the
+    diagrams above.</p>
+
+  <p><code>git reset -- myfile</code> copies from HEAD to stage:</p>
+
+  <pre><code>$ <strong>initial_setup</strong>
+HEAD:     2
+Stage:    3
+Worktree: 4
+$ <strong>git reset -- myfile</strong>
+Unstaged changes after reset:
+M   myfile
+$ <strong>show_status</strong>
+HEAD:     2
+Stage:    2
+Worktree: 4
+</code></pre>
+
+  <p><code>git checkout -- myfile</code> copies from stage to worktree:</p>
+
+  <pre><code>$ <strong>initial_setup</strong>
+HEAD:     2
+Stage:    3
+Worktree: 4
+$ <strong>git checkout -- myfile</strong>
+$ <strong>show_status</strong>
+HEAD:     2
+Stage:    3
+Worktree: 3
+</code></pre>
+
+  <p><code>git checkout HEAD -- myfile</code> copies from HEAD to both stage and
+    worktree:</p>
+
+  <pre><code>$ <strong>initial_setup</strong>
+HEAD:     2
+Stage:    3
+Worktree: 4
+$ <strong>git checkout HEAD -- myfile</strong>
+$ <strong>show_status</strong>
+HEAD:     2
+Stage:    2
+Worktree: 2
+</code></pre>
+
+  <p><code>git commit myfile</code> copies from worktree to both stage and
+    HEAD:</p>
+
+  <pre><code>$ <strong>initial_setup</strong>
+HEAD:     2
+Stage:    3
+Worktree: 4
+$ <strong>git commit myfile -m "version 4"</strong>
+[master 679ff51] version 4
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ <strong>show_status</strong>
+HEAD:     4
+Stage:    4
+Worktree: 4
+</code></pre>
+
   <hr>
 
   <p>Copyright &copy; 2010,
@@ -353,14 +492,18 @@
   Slovak translation &copy; 2013,
     <a href='https://github.com/llucenic'>Ľudovít Lučenič</a>.
   Portuguese translation &copy; 2014,
-    <a href='mailto:goliveira5d@gmail.com'>Gustavo de Oliveira</a>
+    <a href='mailto:goliveira5d@gmail.com'>Gustavo de Oliveira</a>.
+  Traditional Chinese translation &copy; 2015,
+    <a href='https://github.com/PeterDaveHello'>Peter Dave Hello</a>.
+  Polish translation &copy; 2017,
+    <a href="mailto:wypychemil@gmail.com">Emil Wypych</a>.
   </p>
 
   <p><a rel="license"
-    href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/"><img alt=""
-    src="http://i.creativecommons.org/l/by-nc-sa/3.0/us/80x15.png"></a>
+    href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/"><img alt=""
+    src="https://i.creativecommons.org/l/by-nc-sa/3.0/us/80x15.png"></a>
   This work is licensed under a <a rel="license"
-    href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative
+    href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative
     Commons Attribution-Noncommercial-Share Alike 3.0 United States
     License</a>.</p>
 
